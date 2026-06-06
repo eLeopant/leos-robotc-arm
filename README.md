@@ -6,9 +6,9 @@
 
 ## 🛠️ 项目背景与初衷
 
-本项目起源于学校的机器人实训课程。由于实训官方提供的某品牌机械臂工作空间极度封闭、完全不开源，且工程质量堪忧（例如：`CMakeLists.txt` 中大量硬编码绝对路径，导致跨设备移植极其痛苦），极大地限制了开发自由度。
+本项目起源于邮专的机器人实训课程。由于实训官方提供的某品牌机械臂工作空间极度封闭、完全不开源，且工程质量堪忧（例如：`CMakeLists.txt` 中大量硬编码绝对路径，导致跨设备移植极其痛苦），极大地限制了开发自由度。
 
-**既然旧时代的残党如此难用，索性直接掀桌重构，全面拥抱 ROS 2！**
+**因为我是双系统win/ubuntu22.04,就没有重装一个虚拟机的必要了。这边也是仿真的多，就直接ros2构建了。要实物那要么bridge要么就docker装个ros1即可**
 
 为了获得一个纯净、规范且完全可控的开发环境，本项目抛弃了原厂封闭的软硬件生态，基于开源社区中非常完整的 Dofbot 描述文件进行二次开发，在 ROS 2 Humble 环境下从零构建完整的机械臂仿真与控制链。
 
@@ -18,23 +18,11 @@
 * **参考上游**：[v-xchen-v/dofbot_ws](https://github.com/v-xchen-v/dofbot_ws)
 * **致谢**：感谢原作者提供的极其完整的 URDF 关节树与精细的结构件三维网格模型，为本项目在 ROS 2 下的重构奠定了坚实基础。
 
-## 🚀 核心规划与技术栈
+## 🚀 干了什么
 
-项目目前采用 **ROS 2 Humble Base + Tun 模式官方源** 搭建，拒绝国内镜像站同步滞后的潜规则，确保依赖项的最纯正血统。后续将围绕以下技术栈展开：
+移植好了机械臂的 urdf meshes 过了一遍moveit_setup_assistant moveit验证了以下
 
-- [x] **工作空间迁移与版本控制**：基于 Git 进行规范的语义化提交（Conventional Commits）。
-- [ ] **机械臂描述重构**：适配 ROS 2 的 `xacro` 宏定义与关节状态发布器（`joint_state_publisher_gui`）。
-- [ ] **运动学与路径规划**：使用 **MoveIt 2 Setup Assistant** 配置六轴运动学求解器，实现 Rviz 中的逆运动学（IK）控制。
-- [ ] **物理动力学仿真**：对接 **Gazebo 11 (Classic)** 物理引擎，配置 `ros2_control` 插件实现闭环轨迹跟踪。
 
-## 📂 工作空间结构说明
-
-```text
-leos-robotc-arm/
-└── robarm_ws/              # ROS 2 主工作空间
-    ├── src/
-    │   └── rob_arm_info/   # 机械臂元数据与描述功能包
-    │       ├── urdf/       # 核心 dofbot.urdf 描述文件
-    │       ├── meshes/     # 机械臂各关节 3D 视觉/碰撞模型 (STL/DAE)
-    │       └── ...
-    └── ...
+## 一些问题
+CMakelist.txt 别忘记install urdf meshes
+使用 assistant 的 joint_limits.yaml 文件里面的参数需要全是float
