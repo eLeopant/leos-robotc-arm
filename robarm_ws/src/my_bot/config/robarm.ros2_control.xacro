@@ -14,42 +14,49 @@
                   <param name="initial_value">${initial_positions['arm_joint1']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
-            </joint>
+            <dynamics damping="0.05" friction="0.08"/>
+    <dynamics damping="0.05" friction="0.08"/>
+    </joint>
             <joint name="arm_joint2">
                 <command_interface name="position"/>
                 <state_interface name="position">
                   <param name="initial_value">${initial_positions['arm_joint2']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
-            </joint>
+            <dynamics damping="0.05" friction="0.08"/>
+    </joint>
             <joint name="arm_joint3">
                 <command_interface name="position"/>
                 <state_interface name="position">
                   <param name="initial_value">${initial_positions['arm_joint3']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
-            </joint>
+            <dynamics damping="0.05" friction="0.08"/>
+    </joint>
             <joint name="arm_joint4">
                 <command_interface name="position"/>
                 <state_interface name="position">
                   <param name="initial_value">${initial_positions['arm_joint4']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
-            </joint>
+            <dynamics damping="0.05" friction="0.08"/>
+    </joint>
             <joint name="arm_joint5">
                 <command_interface name="position"/>
                 <state_interface name="position">
                   <param name="initial_value">${initial_positions['arm_joint5']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
-            </joint>
+            <dynamics damping="0.05" friction="0.08"/>
+    </joint>
             <joint name="grip_joint">
                 <command_interface name="position"/>
                 <state_interface name="position">
                   <param name="initial_value">${initial_positions['grip_joint']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
-            </joint>
+            <dynamics damping="0.05" friction="0.08"/>
+    </joint>
 
         </ros2_control>
     </xacro:macro>
