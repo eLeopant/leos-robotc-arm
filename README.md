@@ -20,8 +20,9 @@
 
 ## 🚀 干了什么
 
- -[x]移植好了机械臂的 urdf meshes 过了一遍moveit_setup_assistant moveit验证了以下
- -[x]完成了机械臂+moveit 机械臂+ ignition gazabo 6
+- [x] 移植好了机械臂的 urdf meshes 过了一遍 moveit_setup_assistant moveit 
+- [x] 完成了 机械臂 + moveit && 机械臂 + ignition gazabo 6
+
 
 ## 一些问题
 CMakelist.txt 别忘记install urdf meshes
