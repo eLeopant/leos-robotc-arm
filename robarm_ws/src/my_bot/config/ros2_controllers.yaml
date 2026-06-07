@@ -1,18 +1,19 @@
-# 控制器管理器全局参数
 controller_manager:
   ros__parameters:
-    update_rate: 100  # Hz
+    update_rate: 100
 
     my_group_controller:
-      type: effort_controllers/JointGroupEffortController
+      # 暂时都使用位置控制
+      type: joint_trajectory_controller/JointTrajectoryController
   
     gripper_group_controller:
-      type: effort_controllers/JointGroupEffortController
+      # 
+      type: joint_trajectory_controller/JointTrajectoryController
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-# 大臂扭矩直通控制器配置
+
 my_group_controller:
   ros__parameters:
     joints:
@@ -21,23 +22,20 @@ my_group_controller:
       - arm_joint3
       - arm_joint4
       - arm_joint5
-    # 命令接口全部统一为 effort 扭矩
+
     command_interfaces:
-      - effort
+      - position
     state_interfaces:
       - position
       - velocity
-      - effort
 
-# 夹爪扭矩直通控制器配置
+
 gripper_group_controller:
   ros__parameters:
     joints:
       - grip_joint
-
     command_interfaces:
-      - effort
+      - position
     state_interfaces:
       - position
       - velocity
-      - effort
